@@ -43,6 +43,7 @@ public class Expressions {
         return compile(exp)::apply;
     }
 
+
     @SuppressWarnings("unchecked")
     private static <T, R> Function<Function[], Function> fromUnary(Function<T, R> func) {
         return funcs -> val -> func.apply((T)funcs[0].apply(val));
