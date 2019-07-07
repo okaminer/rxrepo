@@ -43,7 +43,6 @@ public class Expressions {
         return compile(exp)::apply;
     }
 
-
     @SuppressWarnings("unchecked")
     private static <T, R> Function<Function[], Function> fromUnary(Function<T, R> func) {
         return funcs -> val -> func.apply((T)funcs[0].apply(val));
@@ -58,6 +57,8 @@ public class Expressions {
     private static <T1, T2, R> Function<Function[], Function> fromBinary(BiFunction<T1, T2, R> func) {
         return funcs -> val -> func.apply((T1)funcs[0].apply(val), (T2)funcs[1].apply(val));
     }
+
+
 
     private static <T1, T2> Function<Function[], Function> fromShortCircuitAnd() {
         return funcs -> val -> (boolean)funcs[0].apply(val) && (boolean)funcs[1].apply(val);
